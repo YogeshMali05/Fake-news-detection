@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Satisfy&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body class="Dark">
+
+    <form id="newsForm" action="{{ url_for('predict')}}" method="POST">
+    <div >
+        <h1>Fake News Detection</h1>
+        <div class="container">
+        
+            <textarea name="message" id="userInput" placeholder="Enter news here..." ></textarea>
+            <button type="submit" id="submitButton"class="chng">Submit</button>
+        
+        </div>
+        <div id="result" class="result">
+        {% if prediction %}
+            {% if prediction == ['FAKE']%}
+            <h2 style="font-size: 13px; color:rgb(175, 62, 62); font-family: 'Figtree', sans-serif;">This is a Fake News.</h2>
+            {% elif prediction == ['REAL']%}
+            <h2 style="font-size: 13px; color:rgb(89, 141, 89); font-family: 'Figtree', sans-serif"><b>This is a Real News.</b></h2>
+            {% endif %}
+        {% else %}
+            <p>Result here...</p>
+        {% endif %}
+        </div>
+
+    </div>
+
+    <label class="switch" id="toggleButton" class="Dark">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+
+    
+
+</form>
+    <script src="../static/js/script.js"></script>
+    
+</body>
+
+
+</html> 
+
+<!--{% if prediction == ['FAKE']%}
+	<h2 style="color:red;">Looking Spam⚠️News📰 </h2>
+	{% elif prediction == ['REAL']%}
+				<h2 style="color:green;"><b>Looking Real News📰</b></h2>
+	{% endif %}
+    <p>Result Here...</p>-->
